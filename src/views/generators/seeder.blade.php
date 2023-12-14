@@ -1,4 +1,7 @@
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class CountriesSeeder extends Seeder {
 
@@ -13,7 +16,7 @@ class CountriesSeeder extends Seeder {
         DB::table(\Config::get('countries.table_name'))->delete();
 
         //Get all of the countries
-        $countries = (new Countries())->getList();
+        $countries = \Countries::getList();
         foreach ($countries as $countryId => $country){
             DB::table(\Config::get('countries.table_name'))->insert(array(
                 'id' => $countryId,
