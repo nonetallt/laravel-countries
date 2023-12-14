@@ -112,7 +112,14 @@ class MigrationCommand extends Command {
         }
 
         //Create the seeder
-        $seeder_file = $this->laravel->path."/../database/seeders/CountriesSeeder.php";
+        $seeder_dir = $this->laravel->path.'/../database/seeds';
+
+        // Fix seeders path for laravel 8+
+        if(! is_dir($seeder_dir)) {
+            $seeder_dir = $this->laravel->path.'/../database/seeders';
+        }
+
+        $seeder_file = "$seeder_dir/CountriesSeeder.php";
         $output = "<?php\n\n" .$app['view']->make('countries::generators.seeder')->render();
 
         if (!file_exists( $seeder_file )) {
