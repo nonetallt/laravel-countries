@@ -31,7 +31,7 @@ class MigrationCommand extends Command {
         $app = app();
         $app['view']->addNamespace('countries',substr(__DIR__,0,-8).'views');
     }
-    
+
     /**
      * Execute the console command.
      *
@@ -112,7 +112,7 @@ class MigrationCommand extends Command {
         }
 
         //Create the seeder
-        $seeder_file = $this->laravel->path."/../database/seeds/CountriesSeeder.php";
+        $seeder_file = $this->laravel->path."/../database/seeders/CountriesSeeder.php";
         $output = "<?php\n\n" .$app['view']->make('countries::generators.seeder')->render();
 
         if (!file_exists( $seeder_file )) {
@@ -127,7 +127,7 @@ class MigrationCommand extends Command {
 
         return true;
     }
-    
+
     /**
      * BC for older laravel versions
      */
